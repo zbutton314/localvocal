@@ -20,52 +20,51 @@ export default function Home() {
   const distinctEnsembleTypes = new Set(ensembles.map(ensemble => ensemble.ensembleType).filter(Boolean)).size;
 
   return (
-    <div className="min-h-screen bg-white dark:bg-dark-bg text-gray-900 dark:text-dark-text">
+    <div className="min-h-screen bg-dark-bg text-gray-900 dark:text-dark-text">
       <Header />
       
       {/* Hero Section */}
-      <section className="relative py-48 overflow-hidden bg-transparent">
-        {/* Background Image - only top portion */}
-        <div className="absolute top-0 left-0 right-0 h-1/2 z-0">
+      <section className="relative overflow-hidden bg-transparent">
+        {/* Background Image - full width */}
+        <div className="w-full">
           <img 
             src="/hero-background.jpg" 
             alt=""
-            className="w-full h-full object-cover"
+            className="w-full h-auto"
           />
         </div>
         
-        {/* Dark overlay covering bottom 67.5% of background image */}
-        <div className="absolute top-[32.5%] left-0 right-0 h-[67.5%] bg-[#1B303C] z-0"></div>
-        
-        {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center pt-40">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
-              Every Voice Deserves a <span className="text-gold">Home</span>
-            </h1>
-            <p className="text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
-              Our mission is to connect the choral community in Kansas City by offering a comprehensive directory of local ensembles. Whether you're a singer looking for an opportunity to make music, a director looking to expand your group, or a listener looking to support Kansas City's vibrant choral music scene, we aim to bridge that gap.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/directory">
-                <Button size="lg" className="bg-gold hover:bg-gold-dark text-white font-semibold px-8 py-3">
-                  <Search className="mr-2 h-5 w-5" />
-                  Browse Ensembles
-                </Button>
-              </Link>
-              <Link href="/contact">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary font-semibold px-8 py-3">
-                  <Mail className="mr-2 h-5 w-5" />
-                  Get in Touch
-                </Button>
-              </Link>
+        {/* Content Section - below the image */}
+        <div className="bg-dark-bg">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div className="text-center">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
+                Every Voice Deserves a <span className="text-gold">Home</span>
+              </h1>
+              <p className="text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
+                Our mission is to connect the choral community in Kansas City by offering a comprehensive directory of local ensembles. Whether you're a singer looking for an opportunity to make music, a director looking to expand your group, or a listener looking to support Kansas City's vibrant choral music scene, we aim to bridge that gap.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/directory">
+                  <Button size="lg" className="bg-gold hover:bg-gold-dark text-white font-semibold px-8 py-3">
+                    <Search className="mr-2 h-5 w-5" />
+                    Browse Ensembles
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary font-semibold px-8 py-3">
+                    <Mail className="mr-2 h-5 w-5" />
+                    Get in Touch
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 bg-white dark:bg-dark-bg">
+      <section className="py-12 bg-dark-bg">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="text-center hover:shadow-lg transition-shadow">

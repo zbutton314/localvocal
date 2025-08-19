@@ -81,7 +81,7 @@ export default function OrganizationDetail() {
       case "Church Choir":
         return "bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200";
       case "Symphony Chorus":
-        return "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200";
+        return "bg-[#E86C4F]/10 text-[#E86C4F] dark:bg-[#E86C4F]/20 dark:text-[#F07A5F]";
       case "Barbershop":
         return "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200";
       case "Jazz":
@@ -104,7 +104,7 @@ export default function OrganizationDetail() {
   const getVoiceTypeDisplay = (voiceType: string) => {
     if (voiceType === "Child") {
       return (
-        <span className="inline-flex items-center justify-center px-2 py-1 rounded text-xs font-bold bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200">
+        <span className="inline-flex items-center justify-center px-2 py-1 rounded text-xs font-bold bg-[#E86C4F]/20 text-[#E86C4F] dark:bg-[#E86C4F] dark:text-white">
           Child
         </span>
       );
@@ -121,8 +121,8 @@ export default function OrganizationDetail() {
         <span
           className={`inline-flex items-center justify-center w-6 h-6 rounded text-xs font-bold ${
             hasS 
-              ? 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200' 
-              : 'bg-gray-100 text-gray-400 dark:bg-gray-700 dark:text-gray-500'
+              ? 'bg-pink-200 text-pink-900 dark:bg-pink-600 dark:text-white' 
+              : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
           }`}
         >
           S
@@ -130,8 +130,8 @@ export default function OrganizationDetail() {
         <span
           className={`inline-flex items-center justify-center w-6 h-6 rounded text-xs font-bold ${
             hasA 
-              ? 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200' 
-              : 'bg-gray-100 text-gray-400 dark:bg-gray-700 dark:text-gray-500'
+              ? 'bg-purple-200 text-purple-900 dark:bg-purple-600 dark:text-white' 
+              : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
           }`}
         >
           A
@@ -139,8 +139,8 @@ export default function OrganizationDetail() {
         <span
           className={`inline-flex items-center justify-center w-6 h-6 rounded text-xs font-bold ${
             hasT 
-              ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' 
-              : 'bg-gray-100 text-gray-400 dark:bg-gray-700 dark:text-gray-500'
+              ? 'bg-blue-200 text-blue-900 dark:bg-blue-600 dark:text-white' 
+              : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
           }`}
         >
           T
@@ -148,8 +148,8 @@ export default function OrganizationDetail() {
         <span
           className={`inline-flex items-center justify-center w-6 h-6 rounded text-xs font-bold ${
             hasB 
-              ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' 
-              : 'bg-gray-100 text-gray-400 dark:bg-gray-700 dark:text-gray-500'
+              ? 'bg-green-200 text-green-900 dark:bg-green-600 dark:text-white' 
+              : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
           }`}
         >
           B
@@ -219,7 +219,7 @@ export default function OrganizationDetail() {
                   <CardTitle>Mission Statement</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  <p className="text-gray-700 dark:text-gray-200 leading-relaxed">
                     {organization.missionStatement}
                   </p>
                 </CardContent>
@@ -233,7 +233,7 @@ export default function OrganizationDetail() {
                   <CardTitle>Goals</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  <p className="text-gray-700 dark:text-gray-200 leading-relaxed">
                     {organization.goals}
                   </p>
                 </CardContent>
@@ -250,7 +250,7 @@ export default function OrganizationDetail() {
               </CardHeader>
               <CardContent>
                 {organization.ensembles.length === 0 ? (
-                  <p className="text-gray-600 dark:text-gray-400">
+                  <p className="text-gray-600 dark:text-gray-200">
                     No ensembles have been added for this organization yet.
                   </p>
                 ) : (
@@ -283,19 +283,19 @@ export default function OrganizationDetail() {
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                          <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                          <div className="flex items-center text-sm text-gray-600 dark:text-gray-200">
                             <User className="h-4 w-4 mr-2" />
                             <span><strong>Director:</strong> {ensemble.director || ""}</span>
                           </div>
-                          <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                          <div className="flex items-center text-sm text-gray-600 dark:text-gray-200">
                             <MapPin className="h-4 w-4 mr-2" />
                             <span><strong>Location:</strong> {ensemble.location || ""}</span>
                           </div>
-                          <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                          <div className="flex items-center text-sm text-gray-600 dark:text-gray-200">
                             <UsersRound className="h-4 w-4 mr-2" />
                             <span><strong>Age Group:</strong> {ensemble.ageGroup || ""}</span>
                           </div>
-                          <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                          <div className="flex items-center text-sm text-gray-600 dark:text-gray-200">
                             <Mic className="h-4 w-4 mr-2" />
                             <span><strong>Voice Type:</strong> </span>
                             {ensemble.voiceType && getVoiceTypeDisplay(ensemble.voiceType)}
@@ -303,18 +303,18 @@ export default function OrganizationDetail() {
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                          <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                          <div className="flex items-center text-sm text-gray-600 dark:text-gray-200">
                             <Calendar className="h-4 w-4 mr-2" />
                             <span><strong>Season:</strong> {ensemble.season || ""}</span>
                           </div>
-                          <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                          <div className="flex items-center text-sm text-gray-600 dark:text-gray-200">
                             <Clock className="h-4 w-4 mr-2" />
                             <span><strong>Rehearsals:</strong> {ensemble.rehearsalDetails || ""}</span>
                           </div>
                         </div>
 
                         <div className="mb-4">
-                          <div className="flex items-start text-sm text-gray-600 dark:text-gray-400">
+                          <div className="flex items-start text-sm text-gray-600 dark:text-gray-200">
                             <AlertTriangle className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" />
                             <div>
                               <span className="font-semibold">Restrictions:</span>{" "}

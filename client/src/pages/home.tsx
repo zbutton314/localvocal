@@ -44,20 +44,20 @@ export default function Home() {
               <p className="text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
                 Our mission is to connect the choral community in Kansas City by offering a comprehensive directory of local ensembles. Whether you're a singer looking for an opportunity to make music, a director looking to expand your group, or a listener looking to support Kansas City's vibrant choral music scene, we aim to bridge that gap.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/directory">
-                  <Button size="lg" className="bg-gold hover:bg-gold-dark text-white font-semibold px-8 py-3">
-                    <Search className="mr-2 h-5 w-5" />
-                    Browse Ensembles
-                  </Button>
-                </Link>
-                <Link href="/contact">
-                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary font-semibold px-8 py-3">
-                    <Mail className="mr-2 h-5 w-5" />
-                    Get in Touch
-                  </Button>
-                </Link>
-              </div>
+                                      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                          <Link href="/directory">
+                            <Button size="lg" className="bg-gold hover:bg-gold-light text-white font-semibold px-8 py-3 transition-colors duration-200">
+                              <Search className="mr-2 h-5 w-5" />
+                              Browse Ensembles
+                            </Button>
+                          </Link>
+                          <Link href="/contact">
+                            <Button size="lg" variant="outline" className="border-gold text-gold hover:bg-gold hover:text-white font-semibold px-8 py-3 transition-colors duration-200">
+                              <Mail className="mr-2 h-5 w-5" />
+                              Get in Touch
+                            </Button>
+                          </Link>
+                        </div>
             </div>
           </div>
         </div>
@@ -69,24 +69,24 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="text-center hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
-                <Landmark className="h-12 w-12 text-primary mx-auto mb-4" />
-                <div className="text-3xl font-bold text-primary mb-2">{organizations.length}</div>
+                <Landmark className="h-12 w-12 text-gray-900 dark:text-white mx-auto mb-4" />
+                <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{organizations.length}</div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Choral Organizations</h3>
               </CardContent>
             </Card>
             
             <Card className="text-center hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
-                <Users className="h-12 w-12 text-primary mx-auto mb-4" />
-                <div className="text-3xl font-bold text-primary mb-2">{ensembles.length}</div>
+                <Users className="h-12 w-12 text-gray-900 dark:text-white mx-auto mb-4" />
+                <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{ensembles.length}</div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Ensembles</h3>
               </CardContent>
             </Card>
             
             <Card className="text-center hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
-                <Palette className="h-12 w-12 text-primary mx-auto mb-4" />
-                <div className="text-3xl font-bold text-primary mb-2">{distinctEnsembleTypes}</div>
+                <Palette className="h-12 w-12 text-gray-900 dark:text-white mx-auto mb-4" />
+                <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{distinctEnsembleTypes}</div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Ensemble Types</h3>
               </CardContent>
             </Card>
@@ -97,7 +97,7 @@ export default function Home() {
 
 
       {/* Kellyn Button Introduction */}
-      <section className="py-16">
+      <section className="py-16 bg-white dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -156,17 +156,17 @@ export default function Home() {
             Ready to Get Started?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="hover:shadow-lg transition-shadow">
+            <Card className="hover:shadow-lg transition-all duration-200 hover:border-gold/30 group">
               <CardContent className="p-6 text-center flex flex-col h-full">
                 <div className="flex-1">
-                  <Search className="h-12 w-12 text-primary mx-auto mb-4" />
+                  <Search className="h-12 w-12 text-[#1B303C] mx-auto mb-4 group-hover:text-gold transition-colors duration-200" />
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Discover Ensembles</h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">
+                  <p className="text-gray-600 dark:text-gray-200 mb-4">
                     Browse our comprehensive directory of choral groups across the metro area
                   </p>
                 </div>
                 <Link href="/directory">
-                  <Button variant="outline" className="w-full">
+                  <Button variant="outline" className="w-full group-hover:border-gold group-hover:text-gold transition-colors duration-200">
                     View Directory
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -174,17 +174,17 @@ export default function Home() {
               </CardContent>
             </Card>
             
-            <Card className="hover:shadow-lg transition-shadow">
+            <Card className="hover:shadow-lg transition-all duration-200 hover:border-gold/30 group">
               <CardContent className="p-6 text-center flex flex-col h-full">
                 <div className="flex-1">
-                  <User className="h-12 w-12 text-primary mx-auto mb-4" />
+                  <User className="h-12 w-12 text-[#1B303C] mx-auto mb-4 group-hover:text-gold transition-colors duration-200" />
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">About Local Vocal</h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">
+                  <p className="text-gray-600 dark:text-gray-200 mb-4">
                     Learn about our mission and approach to connecting singers
                   </p>
                 </div>
                 <Link href="/about">
-                  <Button variant="outline" className="w-full">
+                  <Button variant="outline" className="w-full group-hover:border-gold group-hover:text-gold transition-colors duration-200">
                     Learn More
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -192,17 +192,17 @@ export default function Home() {
               </CardContent>
             </Card>
             
-            <Card className="hover:shadow-lg transition-shadow">
+            <Card className="hover:shadow-lg transition-all duration-200 hover:border-gold/30 group">
               <CardContent className="p-6 text-center flex flex-col h-full">
                 <div className="flex-1">
-                  <Mail className="h-12 w-12 text-primary mx-auto mb-4" />
+                  <Mail className="h-12 w-12 text-[#1B303C] mx-auto mb-4 group-hover:text-gold transition-colors duration-200" />
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Ask the Expert</h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">
+                  <p className="text-gray-600 dark:text-gray-200 mb-4">
                     Get personalized recommendations based on your experience and interests
                   </p>
                 </div>
                 <Link href="/contact">
-                  <Button variant="outline" className="w-full">
+                  <Button variant="outline" className="w-full group-hover:border-gold group-hover:text-gold transition-colors duration-200">
                     Get in Touch
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>

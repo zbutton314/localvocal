@@ -25,8 +25,8 @@ export function Header() {
           href={item.href}
           className={`font-medium transition-colors ${
             mobile 
-              ? "text-lg text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light"
-              : "text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light"
+              ? "text-lg text-gray-300 hover:text-primary-light"
+              : "text-gray-300 hover:text-primary-light"
           }`}
           onClick={() => mobile && setIsMobileMenuOpen(false)}
         >
@@ -37,20 +37,19 @@ export function Header() {
   );
 
   return (
-    <header className="bg-white dark:bg-dark-card border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="bg-dark-bg border-b border-gray-700 sticky top-0 z-50 shadow-sm">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center space-x-4">
-            <Link href="/" className="flex items-center" data-testid="link-home">
-              <Music className="h-8 w-8 text-primary dark:text-primary-light mr-3" />
-              <h1 className="text-2xl font-bold text-primary dark:text-primary-light">Local Vocal</h1>
-            </Link>
+          <div className="flex items-center space-x-4 flex-shrink-0">
+                                  <Link href="/" className="flex items-center" data-testid="link-home">
+                        <h1 className="text-2xl font-sans font-bold text-[#E86C4F] tracking-wide">Local Vocal</h1>
+                      </Link>
 
             <Button
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+              className="p-2 rounded-lg bg-gray-700 text-gray-300 hover:bg-gray-600 flex-shrink-0"
               data-testid="button-theme-toggle"
             >
               {theme === "dark" ? (
@@ -61,7 +60,7 @@ export function Header() {
             </Button>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 flex-shrink-0">
             <NavLinks />
 
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
@@ -69,7 +68,7 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
+                  className="md:hidden p-2 rounded-lg bg-gray-700 text-gray-300 flex-shrink-0"
                   data-testid="button-mobile-menu"
                 >
                   <Menu className="h-5 w-5" />

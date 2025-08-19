@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "wouter";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -59,7 +60,7 @@ export default function Contact() {
       <Header />
       
       {/* Page Header */}
-      <section className="bg-gradient-to-r from-primary to-primary-light dark:from-dark-card dark:to-gray-800 py-16">
+      <section className="bg-gradient-to-r from-[#688799] to-gray-800 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
@@ -75,19 +76,28 @@ export default function Contact() {
 
       {/* Contact Form Section */}
       <section className="py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                Send Me a Message
-              </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-                Fill out the form below and I'll get back to you within 24 hours. 
-                Whether you're looking for a specific type of ensemble or just want to explore your options, 
-                I'm here to help!
-              </p>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+              Send Me a Message
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Fill out the form below and I'll get back to you within 24 hours. 
+              Whether you're looking for a specific type of ensemble or just want to explore your options, 
+              I'm here to help!
+            </p>
+            <div className="mt-6">
+              <Link href="/submit-group">
+                <Button variant="outline" className="border-gold text-gold hover:bg-gold hover:text-white">
+                  Want to list your group? Use our submission form instead
+                </Button>
+              </Link>
+            </div>
+          </div>
 
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Contact Form */}
+            <div className="lg:col-span-2">
               <Card>
                 <CardContent className="p-6">
                   <form onSubmit={handleSubmit} className="space-y-6">
@@ -192,7 +202,7 @@ export default function Contact() {
 
                     <Button 
                       type="submit" 
-                      className="w-full bg-primary hover:bg-primary-dark text-white font-semibold py-3"
+                      className="w-full bg-gold hover:bg-gold-light text-white font-semibold py-3 transition-colors duration-200"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? "Sending..." : "Send Message"}
@@ -202,90 +212,42 @@ export default function Contact() {
               </Card>
             </div>
 
-            {/* Contact Information */}
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                Contact Information
-              </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-                I'm here to help you find your perfect choral community. 
-                Feel free to reach out through any of these channels.
-              </p>
-
-              <div className="space-y-6">
+            {/* What to Include Box */}
+            <div className="lg:col-span-1">
+              <div className="sticky top-8">
                 <Card>
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <Mail className="h-6 w-6 text-primary mt-1" />
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Email</h3>
-                        <p className="text-gray-600 dark:text-gray-400">kellyn@localvocal.com</p>
-                        <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
-                          Best for detailed questions and ensemble inquiries
-                        </p>
-                      </div>
-                    </div>
+                  <CardHeader>
+                    <CardTitle className="text-lg">What to Include in Your Message</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-200">
+                      <li className="flex items-start">
+                        <span className="text-primary mr-2">•</span>
+                        Your experience level and musical background
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary mr-2">•</span>
+                        Preferred genres or styles of music
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary mr-2">•</span>
+                        Your schedule and availability
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary mr-2">•</span>
+                        Location preferences within the metro area
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary mr-2">•</span>
+                        Any specific ensembles you're interested in
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary mr-2">•</span>
+                        Questions about audition requirements or expectations
+                      </li>
+                    </ul>
                   </CardContent>
                 </Card>
-
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <Phone className="h-6 w-6 text-primary mt-1" />
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Phone</h3>
-                        <p className="text-gray-600 dark:text-gray-400">(816) 555-SONG</p>
-                        <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
-                          Available for quick questions and urgent inquiries
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <MapPin className="h-6 w-6 text-primary mt-1" />
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Location</h3>
-                        <p className="text-gray-600 dark:text-gray-400">Kansas City Metro Area</p>
-                        <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
-                          Serving the entire Kansas City metropolitan area
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <Clock className="h-6 w-6 text-primary mt-1" />
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Response Time</h3>
-                        <p className="text-gray-600 dark:text-gray-400">Within 24 Hours</p>
-                        <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
-                          I typically respond to all inquiries within one business day
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-
-              <div className="mt-8 p-6 bg-gray-50 dark:bg-gray-900 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                  What to Include in Your Message
-                </h3>
-                <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                  <li>• Your experience level and musical background</li>
-                  <li>• Preferred genres or styles of music</li>
-                  <li>• Your schedule and availability</li>
-                  <li>• Location preferences within the metro area</li>
-                  <li>• Any specific ensembles you're interested in</li>
-                  <li>• Questions about audition requirements or expectations</li>
-                </ul>
               </div>
             </div>
           </div>

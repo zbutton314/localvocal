@@ -41,13 +41,13 @@ export function OrganizationCard({ organization, ensembles }: OrganizationCardPr
   };
 
   return (
-    <Card className="bg-white dark:bg-dark-card rounded-xl shadow-sm border-2 border-gray-200 dark:border-gray-700 hover:border-primary dark:hover:border-primary-light transition-all duration-200 hover:shadow-lg">
+    <Card className="bg-white dark:bg-dark-card rounded-xl shadow-sm border-2 border-gray-200 dark:border-gray-700 hover:border-gold dark:hover:border-gold transition-all duration-200 hover:shadow-lg">
       <CardContent className="p-6">
         <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-2" data-testid={`text-organization-name-${organization.id}`}>
           {organization.shortName || organization.name}
         </h4>
         {organization.missionStatement && (
-          <p className="text-gray-600 dark:text-gray-400 mb-4" data-testid={`text-organization-mission-${organization.id}`}>
+          <p className="text-gray-600 dark:text-gray-200 mb-4" data-testid={`text-organization-mission-${organization.id}`}>
             {organization.missionStatement.length > 150 
               ? `${organization.missionStatement.substring(0, 150)}...` 
               : organization.missionStatement}
@@ -94,7 +94,7 @@ export function OrganizationCard({ organization, ensembles }: OrganizationCardPr
         </div>
 
         {directors.length > 0 && (
-          <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
+          <div className="flex items-center text-sm text-gray-500 dark:text-gray-200 mb-4">
             <User className="h-4 w-4 mr-2" />
             <span data-testid={`text-director-${organization.id}`}>
               Director: {directors.slice(0, 2).join(", ")}
@@ -104,13 +104,13 @@ export function OrganizationCard({ organization, ensembles }: OrganizationCardPr
         )}
 
         <div className="flex justify-between items-center">
-          <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+          <div className="flex items-center text-sm text-gray-500 dark:text-gray-200">
             <Users className="h-4 w-4 mr-2" />
             <span>{organization.name}</span>
           </div>
           <Link href={`/orgs/${organization.urlSlug}`}>
             <Button
-              className="bg-primary hover:bg-blue-700 text-white font-medium transition-colors"
+              className="bg-gold hover:bg-gold-light text-white font-medium transition-colors duration-200"
               data-testid={`button-view-organization-${organization.id}`}
             >
               View Details

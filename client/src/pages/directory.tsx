@@ -34,7 +34,7 @@ function EnsembleCard({ ensemble, organization, ensembleCount }: EnsembleCardPro
       case "Church Choir":
         return "bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200";
       case "Symphony Chorus":
-        return "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200";
+        return "bg-[#E86C4F]/10 text-[#E86C4F] dark:bg-[#E86C4F]/20 dark:text-[#F07A5F]";
       case "Barbershop":
         return "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200";
       case "Jazz":
@@ -57,7 +57,7 @@ function EnsembleCard({ ensemble, organization, ensembleCount }: EnsembleCardPro
   const getVoiceTypeDisplay = (voiceType: string) => {
     if (voiceType === "Child") {
       return (
-        <span className="inline-flex items-center justify-center px-2 py-1 rounded text-xs font-bold bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200">
+        <span className="inline-flex items-center justify-center px-2 py-1 rounded text-xs font-bold bg-[#E86C4F]/20 text-[#E86C4F] dark:bg-[#E86C4F] dark:text-white">
           Child
         </span>
       );
@@ -74,8 +74,8 @@ function EnsembleCard({ ensemble, organization, ensembleCount }: EnsembleCardPro
         <span
           className={`inline-flex items-center justify-center w-6 h-6 rounded text-xs font-bold ${
             hasS 
-              ? 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200' 
-              : 'bg-gray-100 text-gray-400 dark:bg-gray-700 dark:text-gray-500'
+              ? 'bg-pink-200 text-pink-900 dark:bg-pink-600 dark:text-white' 
+              : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
           }`}
         >
           S
@@ -83,8 +83,8 @@ function EnsembleCard({ ensemble, organization, ensembleCount }: EnsembleCardPro
         <span
           className={`inline-flex items-center justify-center w-6 h-6 rounded text-xs font-bold ${
             hasA 
-              ? 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200' 
-              : 'bg-gray-100 text-gray-400 dark:bg-gray-700 dark:text-gray-500'
+              ? 'bg-purple-200 text-purple-900 dark:bg-purple-600 dark:text-white' 
+              : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
           }`}
         >
           A
@@ -92,8 +92,8 @@ function EnsembleCard({ ensemble, organization, ensembleCount }: EnsembleCardPro
         <span
           className={`inline-flex items-center justify-center w-6 h-6 rounded text-xs font-bold ${
             hasT 
-              ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' 
-              : 'bg-gray-100 text-gray-400 dark:bg-gray-700 dark:text-gray-500'
+              ? 'bg-blue-200 text-blue-900 dark:bg-blue-600 dark:text-white' 
+              : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
           }`}
         >
           T
@@ -101,8 +101,8 @@ function EnsembleCard({ ensemble, organization, ensembleCount }: EnsembleCardPro
         <span
           className={`inline-flex items-center justify-center w-6 h-6 rounded text-xs font-bold ${
             hasB 
-              ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' 
-              : 'bg-gray-100 text-gray-400 dark:bg-gray-700 dark:text-gray-500'
+              ? 'bg-green-200 text-green-900 dark:bg-green-600 dark:text-white' 
+              : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
           }`}
         >
           B
@@ -121,7 +121,7 @@ function EnsembleCard({ ensemble, organization, ensembleCount }: EnsembleCardPro
   };
 
   return (
-    <Card className="bg-white dark:bg-dark-card rounded-xl shadow-sm border-2 border-gray-200 dark:border-gray-700 hover:border-primary dark:hover:border-primary-light transition-all duration-200 hover:shadow-lg h-full">
+    <Card className="bg-white dark:bg-dark-card rounded-xl shadow-sm border-2 border-gray-200 dark:border-gray-700 hover:border-gold dark:hover:border-gold transition-all duration-200 hover:shadow-lg h-full">
       <CardContent className="p-6 h-full flex flex-col">
         {/* Ensemble name as main title */}
         <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1" data-testid={`text-ensemble-name-${ensemble.id}`}>
@@ -143,7 +143,7 @@ function EnsembleCard({ ensemble, organization, ensembleCount }: EnsembleCardPro
         {/* Ensemble description */}
         <div className="mb-6">
           {ensemble.description && (
-            <p className="text-gray-600 dark:text-gray-400" data-testid={`text-ensemble-description-${ensemble.id}`}>
+            <p className="text-gray-600 dark:text-gray-200" data-testid={`text-ensemble-description-${ensemble.id}`}>
               {ensemble.description}
             </p>
           )}
@@ -167,7 +167,7 @@ function EnsembleCard({ ensemble, organization, ensembleCount }: EnsembleCardPro
         </div>
 
         {/* Director info */}
-        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
+        <div className="flex items-center text-sm text-gray-500 dark:text-gray-200 mb-4">
           <User className="h-4 w-4 mr-2" />
           <span data-testid={`text-director-${ensemble.id}`}>
             <strong>Director:</strong> {ensemble.director || ""}
@@ -175,7 +175,7 @@ function EnsembleCard({ ensemble, organization, ensembleCount }: EnsembleCardPro
         </div>
 
         {/* Age Group info */}
-        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
+        <div className="flex items-center text-sm text-gray-500 dark:text-gray-200 mb-4">
           <UsersRound className="h-4 w-4 mr-2" />
           <span data-testid={`text-age-group-${ensemble.id}`}>
             <strong>Age Group:</strong> {ensemble.ageGroup || ""}
@@ -183,7 +183,7 @@ function EnsembleCard({ ensemble, organization, ensembleCount }: EnsembleCardPro
         </div>
 
         {/* Location info */}
-        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-6">
+        <div className="flex items-center text-sm text-gray-500 dark:text-gray-200 mb-6">
           <MapPin className="h-4 w-4 mr-2" />
           <span data-testid={`text-location-${ensemble.id}`}>
             <strong>Location:</strong> {ensemble.location || ""}
@@ -196,7 +196,7 @@ function EnsembleCard({ ensemble, organization, ensembleCount }: EnsembleCardPro
         <div className="flex justify-end items-center mt-6">
           <Link href={`/orgs/${organization.urlSlug}`}>
             <Button
-              className="bg-primary hover:bg-blue-700 text-white font-medium transition-colors"
+              className="bg-gold hover:bg-gold-light text-white font-medium transition-colors duration-200"
               data-testid={`button-view-organization-${ensemble.id}`}
             >
               View Organization
@@ -372,16 +372,21 @@ export default function Directory() {
       <Header />
       
       {/* Page Header */}
-      <section className="bg-gradient-to-r from-primary to-primary-light dark:from-dark-card dark:to-gray-800 py-16">
+      <section className="bg-gradient-to-r from-[#688799] to-gray-800 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
               Ensemble Directory
             </h1>
-            <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-200 max-w-3xl mx-auto mb-6">
               Discover choral ensembles across the Kansas City metro area. 
               Filter by ensemble type, voice type, audition requirements, and more to find your perfect match.
             </p>
+            <Link href="/submit-group">
+              <Button variant="outline" className="border-gold text-gold hover:bg-gold hover:text-white">
+                Don't see your group listed? Submit it here!
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -401,7 +406,7 @@ export default function Directory() {
                   placeholder="Search organizations, ensembles, or directors..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 text-base rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card text-gray-900 dark:text-dark-text focus:ring-2 focus:ring-gold focus:border-transparent"
+                  className="w-full pl-12 pr-4 py-3 text-base rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card text-gray-900 dark:text-dark-text focus:ring-2 focus:ring-gold focus:border-gold transition-colors duration-200"
                   data-testid="input-search"
                 />
               </div>

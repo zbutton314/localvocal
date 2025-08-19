@@ -10,6 +10,7 @@ import Directory from "@/pages/directory";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
 import OrganizationDetail from "@/pages/organization-detail";
+import SubmitGroup from "@/pages/submit-group";
 import Admin from "./pages/admin";
 import NotFound from "@/pages/not-found";
 
@@ -22,6 +23,7 @@ function Router() {
       <Route path="/directory" component={Directory} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
+      <Route path="/submit-group" component={SubmitGroup} />
       <Route path="/orgs/:slug" component={OrganizationDetail} />
       <Route path="/admin" component={Admin} />
       <Route component={NotFound} />

@@ -175,3 +175,12 @@
 .text-low-contrast {
   @apply text-gray-500 dark:text-gray-500;
 }
+
+/* Custom bullet point color for dark mode visibility */
+.text-bullet {
+  color: var(--primary);
+}
+
+.dark .text-bullet {
+  color: hsl(210, 25%, 15%);
+}

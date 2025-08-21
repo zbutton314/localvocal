@@ -55,12 +55,9 @@ function EnsembleCard({ ensemble, organization, ensembleCount }: EnsembleCardPro
   };
 
   const getVoiceTypeDisplay = (voiceType: string) => {
-    if (voiceType === "Child") {
-      return (
-        <span className="inline-flex items-center justify-center px-2 py-1 rounded text-xs font-bold bg-[#E86C4F]/20 text-[#E86C4F] dark:bg-[#E86C4F] dark:text-white">
-          Child
-        </span>
-      );
+    // Only show voice type badges for SA, TB, and SATB
+    if (voiceType === "" || voiceType === "Child") {
+      return null;
     }
 
     // Define which voice parts are included in this voice type
@@ -74,7 +71,7 @@ function EnsembleCard({ ensemble, organization, ensembleCount }: EnsembleCardPro
         <span
           className={`inline-flex items-center justify-center w-6 h-6 rounded text-xs font-bold ${
             hasS 
-              ? 'bg-pink-200 text-pink-900 dark:bg-pink-600 dark:text-white' 
+              ? 'bg-pink-200 text-pink-900 dark:bg-pink-600 dark:text-white border-2 border-gray-800 dark:border-white' 
               : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
           }`}
         >
@@ -83,7 +80,7 @@ function EnsembleCard({ ensemble, organization, ensembleCount }: EnsembleCardPro
         <span
           className={`inline-flex items-center justify-center w-6 h-6 rounded text-xs font-bold ${
             hasA 
-              ? 'bg-purple-200 text-purple-900 dark:bg-purple-600 dark:text-white' 
+              ? 'bg-purple-200 text-purple-900 dark:bg-purple-600 dark:text-white border-2 border-gray-800 dark:border-white' 
               : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
           }`}
         >
@@ -92,7 +89,7 @@ function EnsembleCard({ ensemble, organization, ensembleCount }: EnsembleCardPro
         <span
           className={`inline-flex items-center justify-center w-6 h-6 rounded text-xs font-bold ${
             hasT 
-              ? 'bg-blue-200 text-blue-900 dark:bg-blue-600 dark:text-white' 
+              ? 'bg-blue-200 text-blue-900 dark:bg-blue-600 dark:text-white border-2 border-gray-800 dark:border-white' 
               : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
           }`}
         >
@@ -101,7 +98,7 @@ function EnsembleCard({ ensemble, organization, ensembleCount }: EnsembleCardPro
         <span
           className={`inline-flex items-center justify-center w-6 h-6 rounded text-xs font-bold ${
             hasB 
-              ? 'bg-green-200 text-green-900 dark:bg-green-600 dark:text-white' 
+              ? 'bg-green-200 text-green-900 dark:bg-green-600 dark:text-white border-2 border-gray-800 dark:border-white' 
               : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
           }`}
         >
@@ -156,10 +153,10 @@ function EnsembleCard({ ensemble, organization, ensembleCount }: EnsembleCardPro
               {ensemble.ensembleType}
             </span>
           )}
-          {ensemble.ensembleType && ensemble.voiceType && (
+          {ensemble.ensembleType && ensemble.voiceType && getVoiceTypeDisplay(ensemble.voiceType) && (
             <div className="w-px h-4 bg-gray-300 dark:bg-gray-600"></div>
           )}
-          {ensemble.voiceType && (
+          {ensemble.voiceType && getVoiceTypeDisplay(ensemble.voiceType) && (
             <div className="flex items-center">
               {getVoiceTypeDisplay(ensemble.voiceType)}
             </div>
@@ -478,7 +475,6 @@ export default function Directory() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">All Voices</SelectItem>
-                    <SelectItem value="Child">Child</SelectItem>
                     <SelectItem value="SATB">SATB</SelectItem>
                     <SelectItem value="SA">SA</SelectItem>
                     <SelectItem value="TB">TB</SelectItem>

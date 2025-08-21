@@ -102,60 +102,13 @@ export default function OrganizationDetail() {
   };
 
   const getVoiceTypeDisplay = (voiceType: string) => {
-    if (voiceType === "Child") {
-      return (
-        <span className="inline-flex items-center justify-center px-2 py-1 rounded text-xs font-bold bg-[#E86C4F]/20 text-[#E86C4F] dark:bg-[#E86C4F] dark:text-white">
-          Child
-        </span>
-      );
+    // Only show voice type badges for SA, TB, and SATB
+    if (voiceType === "" || voiceType === "Child") {
+      return null;
     }
 
-    // Define which voice parts are included in this voice type
-    const hasS = voiceType === 'SATB' || voiceType === 'SA';
-    const hasA = voiceType === 'SATB' || voiceType === 'SA';
-    const hasT = voiceType === 'SATB' || voiceType === 'TB';
-    const hasB = voiceType === 'SATB' || voiceType === 'TB';
-
-    return (
-      <div className="flex gap-0.5">
-        <span
-          className={`inline-flex items-center justify-center w-6 h-6 rounded text-xs font-bold ${
-            hasS 
-              ? 'bg-pink-200 text-pink-900 dark:bg-pink-600 dark:text-white' 
-              : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
-          }`}
-        >
-          S
-        </span>
-        <span
-          className={`inline-flex items-center justify-center w-6 h-6 rounded text-xs font-bold ${
-            hasA 
-              ? 'bg-purple-200 text-purple-900 dark:bg-purple-600 dark:text-white' 
-              : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
-          }`}
-        >
-          A
-        </span>
-        <span
-          className={`inline-flex items-center justify-center w-6 h-6 rounded text-xs font-bold ${
-            hasT 
-              ? 'bg-blue-200 text-blue-900 dark:bg-blue-600 dark:text-white' 
-              : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
-          }`}
-        >
-          T
-        </span>
-        <span
-          className={`inline-flex items-center justify-center w-6 h-6 rounded text-xs font-bold ${
-            hasB 
-              ? 'bg-green-200 text-green-900 dark:bg-green-600 dark:text-white' 
-              : 'bg-gray-200 text-gray-600 dark:bg-gray-600 dark:text-gray-300'
-          }`}
-        >
-          B
-        </span>
-      </div>
-    );
+    // Return the voice type as plain text
+    return voiceType;
   };
 
   const getAuditionedBadgeColor = (auditioned: string) => {
@@ -297,48 +250,54 @@ export default function OrganizationDetail() {
                           </div>
                           <div className="flex items-center text-sm text-gray-600 dark:text-gray-200">
                             <Mic className="h-4 w-4 mr-2" />
-                            <span><strong>Voice Type:</strong> </span>
-                            {ensemble.voiceType && getVoiceTypeDisplay(ensemble.voiceType)}
+                            <span><strong>Voice Type:</strong></span>
+                            <span className="ml-2">
+                              {ensemble.voiceType && getVoiceTypeDisplay(ensemble.voiceType) ? (
+                                getVoiceTypeDisplay(ensemble.voiceType)
+                              ) : (
+                                <span>{ensemble.voiceType === "Child" ? "--" : (ensemble.voiceType || "--")}</span>
+                              )}
+                            </span>
                           </div>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                          <div className="flex items-center text-sm text-gray-600 dark:text-gray-200">
-                            <Calendar className="h-4 w-4 mr-2" />
-                            <span><strong>Season:</strong> {ensemble.season || ""}</span>
-                          </div>
-                          <div className="flex items-center text-sm text-gray-600 dark:text-gray-200">
-                            <Clock className="h-4 w-4 mr-2" />
-                            <span><strong>Rehearsals:</strong> {ensemble.rehearsalDetails || ""}</span>
-                          </div>
-                        </div>
-
-                        <div className="mb-4">
-                          <div className="flex items-start text-sm text-gray-600 dark:text-gray-200">
-                            <AlertTriangle className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" />
-                            <div>
-                              <span className="font-semibold">Restrictions:</span>{" "}
-                              {[
-                                ensemble.ageRestrictions && ensemble.ageRestrictions !== "None" ? ensemble.ageRestrictions : null,
-                                ensemble.otherRestrictions && ensemble.otherRestrictions !== "None" ? ensemble.otherRestrictions : null
-                              ].filter(Boolean).join(", ") || "None"}
+                          <div className="space-y-4">
+                            <div className="flex items-center text-sm text-gray-600 dark:text-gray-200">
+                              <Calendar className="h-4 w-4 mr-2" />
+                              <span><strong>Season:</strong> {ensemble.season || ""}</span>
+                            </div>
+                            <div className="flex items-start text-sm text-gray-600 dark:text-gray-200">
+                              <AlertTriangle className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" />
+                              <div>
+                                <span className="font-semibold">Restrictions:</span>{" "}
+                                {[
+                                  ensemble.ageRestrictions && ensemble.ageRestrictions !== "None" ? ensemble.ageRestrictions : null,
+                                  ensemble.otherRestrictions && ensemble.otherRestrictions !== "None" ? ensemble.otherRestrictions : null
+                                ].filter(Boolean).join(", ") || "None"}
+                              </div>
                             </div>
                           </div>
-                        </div>
-
-                        {ensemble.website && (
-                          <div className="flex gap-2">
-                            <a
-                              href={ensemble.website}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center text-sm text-primary hover:text-primary-dark"
-                            >
-                              <ExternalLink className="h-4 w-4 mr-1" />
-                              Visit Website
-                            </a>
+                          <div className="space-y-4">
+                            <div className="flex items-center text-sm text-gray-600 dark:text-gray-200">
+                              <Clock className="h-4 w-4 mr-2" />
+                              <span><strong>Rehearsals:</strong> {ensemble.rehearsalDetails || ""}</span>
+                            </div>
+                            {ensemble.website && (
+                              <div className="flex items-center text-sm text-gray-600 dark:text-gray-200">
+                                <ExternalLink className="h-4 w-4 mr-2 font-bold" />
+                                <a
+                                  href={ensemble.website}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-gray-600 dark:text-gray-200 hover:text-gray-800 dark:hover:text-white font-bold"
+                                >
+                                  Visit Website
+                                </a>
+                              </div>
+                            )}
                           </div>
-                        )}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -356,10 +315,10 @@ export default function OrganizationDetail() {
               <CardContent className="space-y-4">
                 {organization.email && (
                   <div className="flex items-center">
-                    <Mail className="h-4 w-4 mr-2 text-gray-500" />
+                    <Mail className="h-4 w-4 mr-2 text-gray-700 dark:text-gray-200" />
                     <a
                       href={`mailto:${organization.email}`}
-                      className="text-primary hover:text-primary-dark"
+                      className="text-gray-800 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-100"
                     >
                       {organization.email}
                     </a>
@@ -368,12 +327,12 @@ export default function OrganizationDetail() {
 
                 {organization.website && (
                   <div className="flex items-center">
-                    <ExternalLink className="h-4 w-4 mr-2 text-gray-500" />
+                    <ExternalLink className="h-4 w-4 mr-2 text-gray-700 dark:text-gray-200" />
                     <a
                       href={organization.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-primary hover:text-primary-dark"
+                      className="text-gray-800 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-100"
                     >
                       Visit Website
                     </a>
@@ -382,12 +341,12 @@ export default function OrganizationDetail() {
 
                 {organization.socialMedia && (
                   <div className="flex items-center">
-                    <ExternalLink className="h-4 w-4 mr-2 text-gray-500" />
+                    <ExternalLink className="h-4 w-4 mr-2 text-gray-700 dark:text-gray-200" />
                     <a
                       href={organization.socialMedia}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-primary hover:text-primary-dark"
+                      className="text-gray-800 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-100"
                     >
                       Social Media
                     </a>

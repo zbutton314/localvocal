@@ -111,7 +111,7 @@ export default function SubmitGroup() {
               Submit Your Group
             </h1>
             <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-              Help us grow the Kansas City choral community by adding your organization and ensembles to our directory.
+              Improve your visibility by adding your organization and ensembles to the Local Vocal directory.
             </p>
           </div>
         </div>
@@ -123,7 +123,7 @@ export default function SubmitGroup() {
           <Alert className="mb-8 bg-card border-gold">
             <Info className="h-4 w-4 text-gold" />
             <AlertDescription className="text-card-foreground">
-              We'll review your submission and be in touch to confirm details and collect any additional information needed before listing your group on our site.
+              We will review your submission and reach out with any clarifying questions before listing your group.
             </AlertDescription>
           </Alert>
 
@@ -152,7 +152,7 @@ export default function SubmitGroup() {
                       type="url"
                       value={website}
                       onChange={(e) => setWebsite(e.target.value)}
-                      placeholder="https://example.com"
+                      placeholder=""
                       className="bg-background border-input"
                     />
                   </div>
@@ -234,7 +234,7 @@ export default function SubmitGroup() {
               <CardContent className="space-y-6">
                 {ensembles.length === 0 ? (
                   <p className="text-muted-foreground text-center py-8">
-                    No ensembles added yet. Click "Add Ensemble" to get started.
+                    No ensembles added yet.
                   </p>
                 ) : (
                   ensembles.map((ensemble, index) => (

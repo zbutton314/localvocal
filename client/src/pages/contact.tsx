@@ -66,10 +66,15 @@ export default function Contact() {
             <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
               Get in Touch
             </h1>
-            <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-              Have questions about finding the right ensemble? Ready to start your choral journey? 
-              I'm here to help you get connected with the perfect group.
+            <p className="text-xl text-gray-200 max-w-3xl mx-auto mb-6">
+              Whether you're a new singer or a seasoned chorister, 
+              we're here to help you get connected with the perfect group.
             </p>
+            <Link href="/submit-group">
+              <Button variant="outline" className="border-gold text-gold hover:bg-gold hover:text-white">
+                Want to list your group? Submit it here!
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -77,22 +82,7 @@ export default function Contact() {
       {/* Contact Form Section */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Send Me a Message
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Fill out the form below and I'll get back to you within 24 hours. 
-              Whether you're looking for a specific type of ensemble or just want to explore your options, 
-              I'm here to help!
-            </p>
-            <div className="mt-6">
-              <Link href="/submit-group">
-                <Button variant="outline" className="border-gold text-gold hover:bg-gold hover:text-white">
-                  Want to list your group? Use our submission form instead
-                </Button>
-              </Link>
-            </div>
+          <div className="text-center mb-8">
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -179,7 +169,7 @@ export default function Contact() {
                         onChange={(e) => handleInputChange("message", e.target.value)}
                         required
                         rows={6}
-                        placeholder="Tell me about what you're looking for, your experience level, preferred genres, or any other details that will help me find the perfect ensemble for you..."
+                        placeholder="Tell me what you're looking for..."
                         className="mt-1"
                       />
                     </div>
@@ -222,27 +212,27 @@ export default function Contact() {
                   <CardContent>
                     <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-200">
                       <li className="flex items-start">
-                        <span className="text-primary mr-2">•</span>
+                        <span className="text-bullet mr-2">•</span>
                         Your experience level and musical background
                       </li>
                       <li className="flex items-start">
-                        <span className="text-primary mr-2">•</span>
+                        <span className="text-bullet mr-2">•</span>
                         Preferred genres or styles of music
                       </li>
                       <li className="flex items-start">
-                        <span className="text-primary mr-2">•</span>
+                        <span className="text-bullet mr-2">•</span>
                         Your schedule and availability
                       </li>
                       <li className="flex items-start">
-                        <span className="text-primary mr-2">•</span>
-                        Location preferences within the metro area
+                        <span className="text-bullet mr-2">•</span>
+                        Location preferences within the Kansas City metro
                       </li>
                       <li className="flex items-start">
-                        <span className="text-primary mr-2">•</span>
+                        <span className="text-bullet mr-2">•</span>
                         Any specific ensembles you're interested in
                       </li>
                       <li className="flex items-start">
-                        <span className="text-primary mr-2">•</span>
+                        <span className="text-bullet mr-2">•</span>
                         Questions about audition requirements or expectations
                       </li>
                     </ul>

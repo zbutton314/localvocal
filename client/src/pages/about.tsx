@@ -60,7 +60,7 @@ export default function About() {
                                       <div className="h-12 w-12 text-[#E86C4F] mx-auto mb-4 flex items-center justify-center text-4xl font-bold">3</div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Community Building</h3>
                 <p className="text-gray-600 dark:text-gray-200">
-                  More resources to come in the future - let us know what you'd like to see in Local Vocal.
+                  More resources are under development - let us know what you'd like to see in Local Vocal.
                 </p>
               </CardContent>
             </Card>
@@ -102,7 +102,7 @@ export default function About() {
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No Sponsorships</h3>
                     <p className="text-gray-600 dark:text-gray-200">
-                      No organizations receive preferential treatment or placement within the site.
+                      No organizations receive preferential treatment or special placement within the site.
                     </p>
                   </div>
                 </div>
@@ -130,7 +130,7 @@ export default function About() {
                       "To strengthen the Kansas City choral community by improving ensemble visibility, connecting singers to local opportunities, and creating more lifelong musicians."
                     </p>
                     <div className="text-center">
-                      <div className="text-2xl font-bold">Our Goal: 0 voices without a home</div>
+                      <div className="text-2xl font-bold">Our Goal: ---</div>
                     </div>
                   </div>
                 </CardContent>

@@ -179,19 +179,7 @@ export default function OrganizationDetail() {
               </Card>
             )}
 
-            {/* Goals */}
-            {organization.goals && (
-              <Card className="mb-8">
-                <CardHeader>
-                  <CardTitle>Goals</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-700 dark:text-gray-200 leading-relaxed">
-                    {organization.goals}
-                  </p>
-                </CardContent>
-              </Card>
-            )}
+
 
             {/* Ensembles */}
             <Card>

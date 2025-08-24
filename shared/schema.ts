@@ -13,7 +13,6 @@ export const organizations = pgTable("organizations", {
   email: text("email"),
   religiousAffiliation: text("religious_affiliation"),
   missionStatement: text("mission_statement"),
-  goals: text("goals"),
 });
 
 export const ensembles = pgTable("ensembles", {

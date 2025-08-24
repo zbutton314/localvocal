@@ -30,15 +30,15 @@ export default function About() {
               Empowering Local Voices
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
-              Local Vocal is your gateway to the choral music community in Kansas City. We believe in enabling the lifelong musician by finding opportunities for involvement, expanding access to vocal education and training, and increasing audience interest across the wide array of local ensembles.
+              Local Vocal is your gateway to the choral music community in Kansas City. We believe in enabling the lifelong musician by finding opportunities for involvement, expanding access to vocal training, and increasing audience interest across the wide array of local ensembles.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="text-center">
               <CardContent className="p-6">
-                                      <div className="h-12 w-12 text-[#E86C4F] mx-auto mb-4 flex items-center justify-center text-4xl font-bold">1</div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Comprehensive Directory</h3>
+                <div className="h-12 w-12 text-gray-900 dark:text-white mx-auto mb-4 flex items-center justify-center text-4xl font-bold">1</div>
+                <h3 className="text-xl font-semibold text-orange-700 dark:text-orange-400 mb-2">Comprehensive Directory</h3>
                 <p className="text-gray-600 dark:text-gray-200">
                   Our extensive database includes Kansas City-based choral organizations of all genres and voicings.
                 </p>
@@ -47,8 +47,8 @@ export default function About() {
 
             <Card className="text-center">
               <CardContent className="p-6">
-                                      <div className="h-12 w-12 text-[#E86C4F] mx-auto mb-4 flex items-center justify-center text-4xl font-bold">2</div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Direct Connections</h3>
+                <div className="h-12 w-12 text-gray-900 dark:text-white mx-auto mb-4 flex items-center justify-center text-4xl font-bold">2</div>
+                <h3 className="text-xl font-semibold text-orange-700 dark:text-orange-400 mb-2">Direct Connections</h3>
                 <p className="text-gray-600 dark:text-gray-200">
                   Contact us for a personalized recommendation or to arrange an introduction.
                 </p>
@@ -57,8 +57,8 @@ export default function About() {
 
             <Card className="text-center">
               <CardContent className="p-6">
-                                      <div className="h-12 w-12 text-[#E86C4F] mx-auto mb-4 flex items-center justify-center text-4xl font-bold">3</div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Community Building</h3>
+                <div className="h-12 w-12 text-gray-900 dark:text-white mx-auto mb-4 flex items-center justify-center text-4xl font-bold">3</div>
+                <h3 className="text-xl font-semibold text-orange-700 dark:text-orange-400 mb-2">Community Building</h3>
                 <p className="text-gray-600 dark:text-gray-200">
                   More resources are under development - let us know what you'd like to see in Local Vocal.
                 </p>
@@ -122,16 +122,13 @@ export default function About() {
             </div>
 
             <div className="relative">
-              <Card className="bg-gradient-to-br from-primary-light to-primary p-8 text-white">
+              <Card className="bg-gradient-to-br from-primary-light to-primary p-6 text-white">
                 <CardContent className="p-0">
                   <div className="text-center">
                     <h4 className="text-2xl font-bold mb-4">Our Mission</h4>
-                    <p className="text-lg text-white/90 mb-6">
+                    <p className="text-lg text-white/90">
                       "To strengthen the Kansas City choral community by improving ensemble visibility, connecting singers to local opportunities, and creating more lifelong musicians."
                     </p>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold">Our Goal: ---</div>
-                    </div>
                   </div>
                 </CardContent>
               </Card>

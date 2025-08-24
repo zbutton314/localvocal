@@ -42,7 +42,7 @@ export function Header() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-4 flex-shrink-0">
                                   <Link href="/" className="flex items-center" data-testid="link-home">
-                        <h1 className="text-2xl font-sans font-bold text-[#E86C4F] tracking-wide">Local Vocal</h1>
+                        <h1 className="text-2xl font-['Cinzel_Decorative'] font-bold text-[#E86C4F] tracking-wide">Local Vocal</h1>
                       </Link>
 
             <Button

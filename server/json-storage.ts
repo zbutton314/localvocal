@@ -119,7 +119,7 @@ import {
         email: insertOrganization.email || null,
         religiousAffiliation: insertOrganization.religiousAffiliation || null,
         missionStatement: insertOrganization.missionStatement || null,
-        goals: insertOrganization.goals || null
+
       };
       
       organizations.push(organization);

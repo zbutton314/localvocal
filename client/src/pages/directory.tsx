@@ -418,11 +418,13 @@ export default function Directory() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">All Organizations</SelectItem>
-                    {organizations.map((org) => (
-                      <SelectItem key={org.id} value={org.id}>
-                        {org.name}
-                      </SelectItem>
-                    ))}
+                    {organizations
+                      .sort((a, b) => a.name.localeCompare(b.name))
+                      .map((org) => (
+                        <SelectItem key={org.id} value={org.id}>
+                          {org.name}
+                        </SelectItem>
+                      ))}
                   </SelectContent>
                 </Select>
               </div>
@@ -435,8 +437,8 @@ export default function Directory() {
                   <SelectContent>
                     <SelectItem value="all">All Ages</SelectItem>
                     <SelectItem value="Adult">Adult</SelectItem>
-                    <SelectItem value="Children">Children</SelectItem>
                     <SelectItem value="Youth">Youth</SelectItem>
+                    <SelectItem value="Children">Children</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

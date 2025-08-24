@@ -380,7 +380,7 @@ export default function Directory() {
               Filter by ensemble type, voice type, audition requirements, and more to find your perfect match.
             </p>
             <Link href="/submit-group">
-              <Button variant="outline" className="border-gold text-gold hover:bg-gold hover:text-white">
+              <Button variant="outline" className="bg-gold border-gold text-white hover:bg-white hover:border-gold hover:text-gold">
                 Don't see your group listed? Submit it here!
               </Button>
             </Link>

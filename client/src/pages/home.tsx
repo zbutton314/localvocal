@@ -198,7 +198,7 @@ export default function Home() {
                   <Mail className="h-12 w-12 text-[#1B303C] mx-auto mb-4 group-hover:text-gold transition-colors duration-200" />
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Ask the Expert</h3>
                   <p className="text-gray-600 dark:text-gray-200 mb-4">
-                    Get personalized recommendations based on your experience and interests
+                    Get personalized recommendations based on your interests
                   </p>
                 </div>
                 <Link href="/contact">

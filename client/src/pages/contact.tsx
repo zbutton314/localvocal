@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "wouter";
+import emailjs from '@emailjs/browser';
+import { EMAILJS_CONFIG } from "@/config/emailjs";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,10 +17,8 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
     subject: "",
-    message: "",
-    preferredContact: "email"
+    message: ""
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,19 +29,31 @@ export default function Contact() {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    // Simulate form submission (replace with actual API call)
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: EMAILJS_CONFIG.TO_EMAIL
+      };
+
+      await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID, 
+        EMAILJS_CONFIG.TEMPLATE_ID, 
+        templateParams, 
+        EMAILJS_CONFIG.PUBLIC_KEY
+      );
+      
       setSubmitStatus("success");
       setFormData({
         name: "",
         email: "",
-        phone: "",
         subject: "",
-        message: "",
-        preferredContact: "email"
+        message: ""
       });
     } catch (error) {
+      console.error('EmailJS Error:', error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -71,9 +83,9 @@ export default function Contact() {
               we're here to help you get connected with the perfect group.
             </p>
             <Link href="/submit-group">
-              <Button variant="outline" className="border-gold text-gold hover:bg-gold hover:text-white">
-                Want to list your group? Submit it here!
-              </Button>
+                              <Button variant="outline" className="bg-gold border-gold text-white hover:bg-white hover:border-gold hover:text-gold">
+                  Want to list your group? Submit it here!
+                </Button>
             </Link>
           </div>
         </div>
@@ -116,17 +128,6 @@ export default function Contact() {
                     </div>
 
                     <div>
-                      <Label htmlFor="phone">Phone Number</Label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        value={formData.phone}
-                        onChange={(e) => handleInputChange("phone", e.target.value)}
-                        className="mt-1"
-                      />
-                    </div>
-
-                    <div>
                       <Label htmlFor="subject">Subject *</Label>
                       <Select 
                         value={formData.subject} 
@@ -136,27 +137,10 @@ export default function Contact() {
                           <SelectValue placeholder="Select a subject" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="ensemble-inquiry">Looking for an Ensemble</SelectItem>
-                          <SelectItem value="general-question">General Question</SelectItem>
-                          <SelectItem value="organization-listing">List My Organization</SelectItem>
-                          <SelectItem value="partnership">Partnership Opportunity</SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div>
-                      <Label htmlFor="preferredContact">Preferred Contact Method</Label>
-                      <Select 
-                        value={formData.preferredContact} 
-                        onValueChange={(value) => handleInputChange("preferredContact", value)}
-                      >
-                        <SelectTrigger className="mt-1">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="email">Email</SelectItem>
-                          <SelectItem value="phone">Phone</SelectItem>
+                          <SelectItem value="Ensemble Inquiry">Looking for an Ensemble</SelectItem>
+                          <SelectItem value="Partnership Opportunity">Partnership Opportunity</SelectItem>
+                          <SelectItem value="General Question">General Question</SelectItem>
+                          <SelectItem value="Other">Other</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -183,8 +167,8 @@ export default function Contact() {
                         )}
                         <AlertDescription>
                           {submitStatus === "success" 
-                            ? "Thank you! Your message has been sent. I'll get back to you within 24 hours."
-                            : "Sorry, there was an error sending your message. Please try again or contact me directly."
+                            ? "Thank you! Your message has been sent."
+                            : "Sorry, there was an error sending your message. Please try again later."
                           }
                         </AlertDescription>
                       </Alert>
@@ -217,15 +201,15 @@ export default function Contact() {
                       </li>
                       <li className="flex items-start">
                         <span className="text-bullet mr-2">•</span>
-                        Preferred genres or styles of music
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-bullet mr-2">•</span>
                         Your schedule and availability
                       </li>
                       <li className="flex items-start">
                         <span className="text-bullet mr-2">•</span>
                         Location preferences within the Kansas City metro
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-bullet mr-2">•</span>
+                        Preferred genres or styles of music
                       </li>
                       <li className="flex items-start">
                         <span className="text-bullet mr-2">•</span>

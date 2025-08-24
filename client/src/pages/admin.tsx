@@ -20,6 +20,11 @@ export default function Admin() {
   const [activeTab, setActiveTab] = useState<"organization" | "ensemble">("organization");
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
+  // Edit mode states
+  const [selectedOrgId, setSelectedOrgId] = useState<string>("");
+  const [selectedEnsembleId, setSelectedEnsembleId] = useState<string>("");
+  const [isEditMode, setIsEditMode] = useState(false);
+
   // Form states
   const [orgForm, setOrgForm] = useState({
     name: "",
@@ -59,6 +64,85 @@ export default function Admin() {
   const { data: ensembles = [] } = useQuery<Ensemble[]>({
     queryKey: ["/api/ensembles"],
   });
+
+  // Helper functions for form management
+  const resetOrgForm = () => {
+    setOrgForm({
+      name: "",
+      shortName: "",
+      urlSlug: "",
+      website: "",
+      socialMedia: "",
+      email: "",
+      religiousAffiliation: "",
+      missionStatement: "",
+      goals: ""
+    });
+    setSelectedOrgId("");
+    setIsEditMode(false);
+  };
+
+  const resetEnsembleForm = () => {
+    setEnsembleForm({
+      name: "",
+      shortName: "",
+      organizationId: "",
+      organizationName: "",
+      website: "",
+      director: "",
+      ageGroup: "",
+      voiceType: "",
+      ensembleType: "",
+      location: "",
+      auditioned: "",
+      payLevel: "",
+      ageRestrictions: "",
+      otherRestrictions: "",
+      season: "",
+      rehearsalDetails: ""
+    });
+    setSelectedEnsembleId("");
+    setIsEditMode(false);
+  };
+
+  const populateOrgForm = (org: Organization) => {
+    setOrgForm({
+      name: org.name || "",
+      shortName: org.shortName || "",
+      urlSlug: org.urlSlug || "",
+      website: org.website || "",
+      socialMedia: org.socialMedia || "",
+      email: org.email || "",
+      religiousAffiliation: org.religiousAffiliation || "",
+      missionStatement: org.missionStatement || "",
+      goals: org.goals || ""
+    });
+    setSelectedOrgId(org.id);
+    setIsEditMode(true);
+  };
+
+  const populateEnsembleForm = (ensemble: Ensemble) => {
+    setEnsembleForm({
+      name: ensemble.name || "",
+      shortName: ensemble.shortName || "",
+      organizationId: ensemble.organizationId,
+      organizationName: ensemble.organizationName || "",
+      website: ensemble.website || "",
+      director: ensemble.director || "",
+      ageGroup: ensemble.ageGroup || "",
+      voiceType: ensemble.voiceType || "",
+      ensembleType: ensemble.ensembleType || "",
+      location: ensemble.location || "",
+      auditioned: ensemble.auditioned || "",
+      payLevel: ensemble.payLevel || "",
+      ageRestrictions: ensemble.ageRestrictions || "",
+      otherRestrictions: ensemble.otherRestrictions || "",
+      season: ensemble.season || "",
+      rehearsalDetails: ensemble.rehearsalDetails || ""
+    });
+    setSelectedEnsembleId(ensemble.id);
+    setIsEditMode(true);
+  };
 
   // Check authentication status on component mount
   useEffect(() => {
@@ -122,75 +206,66 @@ export default function Admin() {
   const handleOrgSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/admin/organizations", {
-        method: "POST",
+      const url = isEditMode 
+        ? `/api/admin/organizations/${selectedOrgId}`
+        : "/api/admin/organizations";
+      
+      const method = isEditMode ? "PUT" : "POST";
+      
+      const response = await fetch(url, {
+        method,
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify(orgForm),
       });
 
       if (response.ok) {
-        setMessage({ type: "success", text: "Organization added successfully!" });
-        setOrgForm({
-          name: "",
-          shortName: "",
-          urlSlug: "",
-          website: "",
-          socialMedia: "",
-          email: "",
-          religiousAffiliation: "",
-          missionStatement: "",
-          goals: ""
-        });
+        const action = isEditMode ? "updated" : "added";
+        setMessage({ type: "success", text: `Organization ${action} successfully!` });
+        resetOrgForm();
         // Refresh data
         window.location.reload();
       } else {
         const data = await response.json();
-        setMessage({ type: "error", text: data.message || "Failed to add organization" });
+        const action = isEditMode ? "update" : "add";
+        setMessage({ type: "error", text: data.message || `Failed to ${action} organization` });
       }
     } catch (error) {
-      setMessage({ type: "error", text: "Error adding organization" });
+      const action = isEditMode ? "updating" : "adding";
+      setMessage({ type: "error", text: `Error ${action} organization` });
     }
   };
 
   const handleEnsembleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/admin/ensembles", {
-        method: "POST",
+      const url = isEditMode 
+        ? `/api/admin/ensembles/${selectedEnsembleId}`
+        : "/api/admin/ensembles";
+      
+      const method = isEditMode ? "PUT" : "POST";
+      
+      const response = await fetch(url, {
+        method,
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify(ensembleForm),
       });
 
       if (response.ok) {
-        setMessage({ type: "success", text: "Ensemble added successfully!" });
-        setEnsembleForm({
-          name: "",
-          shortName: "",
-          organizationId: "",
-          organizationName: "",
-          website: "",
-          director: "",
-          ageGroup: "",
-          voiceType: "",
-          ensembleType: "",
-          location: "",
-          auditioned: "",
-          payLevel: "",
-          ageRestrictions: "",
-          otherRestrictions: "",
-          season: "",
-          rehearsalDetails: ""
-        });
+        const action = isEditMode ? "updated" : "added";
+        setMessage({ type: "success", text: `Ensemble ${action} successfully!` });
+        resetEnsembleForm();
         // Refresh data
         window.location.reload();
       } else {
         const data = await response.json();
-        setMessage({ type: "error", text: data.message || "Failed to add ensemble" });
+        const action = isEditMode ? "update" : "add";
+        setMessage({ type: "error", text: data.message || `Failed to ${action} ensemble` });
       }
     } catch (error) {
-      setMessage({ type: "error", text: "Error adding ensemble" });
+      const action = isEditMode ? "updating" : "adding";
+      setMessage({ type: "error", text: `Error ${action} ensemble` });
     }
   };
 
@@ -275,15 +350,21 @@ export default function Admin() {
           <div className="flex space-x-4 mb-6">
             <Button
               variant={activeTab === "organization" ? "default" : "outline"}
-              onClick={() => setActiveTab("organization")}
+              onClick={() => {
+                setActiveTab("organization");
+                resetOrgForm();
+              }}
             >
-              Add Organization
+              Organizations
             </Button>
             <Button
               variant={activeTab === "ensemble" ? "default" : "outline"}
-              onClick={() => setActiveTab("ensemble")}
+              onClick={() => {
+                setActiveTab("ensemble");
+                resetEnsembleForm();
+              }}
             >
-              Add Ensemble
+              Ensembles
             </Button>
           </div>
         </div>
@@ -302,9 +383,41 @@ export default function Admin() {
         {activeTab === "organization" ? (
           <Card>
             <CardHeader>
-              <CardTitle>Add New Organization</CardTitle>
+              <CardTitle>{isEditMode ? "Edit Organization" : "Add New Organization"}</CardTitle>
             </CardHeader>
             <CardContent>
+              {/* Organization Selector */}
+              <div className="mb-6">
+                <Label htmlFor="orgSelector">Select Organization to Edit</Label>
+                <Select
+                  value={selectedOrgId}
+                  onValueChange={(value) => {
+                    if (value === "new") {
+                      resetOrgForm();
+                    } else {
+                      const org = organizations.find(o => o.id === value);
+                      if (org) {
+                        populateOrgForm(org);
+                      }
+                    }
+                  }}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Choose an organization" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="new">➕ Create New Organization</SelectItem>
+                    {organizations
+                      .sort((a, b) => (a.shortName || a.name).localeCompare(b.shortName || b.name))
+                      .map((org) => (
+                        <SelectItem key={org.id} value={org.id}>
+                          {org.shortName || org.name}
+                        </SelectItem>
+                      ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
               <form onSubmit={handleOrgSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
@@ -407,19 +520,32 @@ export default function Admin() {
                   </Select>
                 </div>
 
-                <Button type="submit" className="w-full">
-                  Add Organization
-                </Button>
+                <div className="flex space-x-4">
+                  <Button type="submit" className="flex-1">
+                    {isEditMode ? "Update Organization" : "Add Organization"}
+                  </Button>
+                  {isEditMode && (
+                    <Button 
+                      type="button" 
+                      variant="outline" 
+                      onClick={resetOrgForm}
+                      className="flex-1"
+                    >
+                      Cancel
+                    </Button>
+                  )}
+                </div>
               </form>
             </CardContent>
           </Card>
         ) : (
           <Card>
             <CardHeader>
-              <CardTitle>Add New Ensemble</CardTitle>
+              <CardTitle>{isEditMode ? "Edit Ensemble" : "Add New Ensemble"}</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleEnsembleSubmit} className="space-y-4">
+                {/* Organization Selector - Must be selected first */}
                 <div>
                   <Label htmlFor="organizationId">Organization *</Label>
                   <Select
@@ -431,6 +557,9 @@ export default function Admin() {
                         organizationId: value,
                         organizationName: selectedOrg?.name || ""
                       });
+                      // Reset ensemble selection when organization changes
+                      setSelectedEnsembleId("");
+                      setIsEditMode(false);
                     }}
                   >
                     <SelectTrigger>
@@ -446,6 +575,49 @@ export default function Admin() {
                   </Select>
                 </div>
 
+                {/* Ensemble Selector - Only shows after organization is selected */}
+                {ensembleForm.organizationId && (
+                  <div>
+                    <Label htmlFor="ensembleSelector">Select Ensemble to Edit</Label>
+                    <Select
+                      value={selectedEnsembleId}
+                      onValueChange={(value) => {
+                        if (value === "new") {
+                          resetEnsembleForm();
+                          // Keep the selected organization
+                          const selectedOrg = organizations.find(org => org.id === ensembleForm.organizationId);
+                          setEnsembleForm(prev => ({
+                            ...prev,
+                            organizationId: ensembleForm.organizationId,
+                            organizationName: selectedOrg?.name || ""
+                          }));
+                        } else {
+                          const ensemble = ensembles.find(e => e.id === value);
+                          if (ensemble) {
+                            populateEnsembleForm(ensemble);
+                          }
+                        }
+                      }}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Choose an ensemble or create new" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="new">➕ Create New Ensemble</SelectItem>
+                        {ensembles
+                          .filter(ensemble => ensemble.organizationId === ensembleForm.organizationId)
+                          .sort((a, b) => a.name.localeCompare(b.name))
+                          .map((ensemble) => (
+                            <SelectItem key={ensemble.id} value={ensemble.id}>
+                              {ensemble.name}
+                            </SelectItem>
+                          ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
+
+                {/* Form fields are disabled until organization is selected */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="ensembleName">Name *</Label>
@@ -454,6 +626,7 @@ export default function Admin() {
                       value={ensembleForm.name}
                       onChange={(e) => setEnsembleForm({ ...ensembleForm, name: e.target.value })}
                       required
+                      disabled={!ensembleForm.organizationId}
                     />
                   </div>
                   <div>
@@ -462,6 +635,7 @@ export default function Admin() {
                       id="ensembleShortName"
                       value={ensembleForm.shortName}
                       onChange={(e) => setEnsembleForm({ ...ensembleForm, shortName: e.target.value })}
+                      disabled={!ensembleForm.organizationId}
                     />
                   </div>
                 </div>
@@ -472,6 +646,7 @@ export default function Admin() {
                     <Select
                       value={ensembleForm.ensembleType}
                       onValueChange={(value) => setEnsembleForm({ ...ensembleForm, ensembleType: value })}
+                      disabled={!ensembleForm.organizationId}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Select ensemble type" />
@@ -491,6 +666,7 @@ export default function Admin() {
                     <Select
                       value={ensembleForm.voiceType}
                       onValueChange={(value) => setEnsembleForm({ ...ensembleForm, voiceType: value })}
+                      disabled={!ensembleForm.organizationId}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Select voice type" />
@@ -512,6 +688,7 @@ export default function Admin() {
                       id="director"
                       value={ensembleForm.director}
                       onChange={(e) => setEnsembleForm({ ...ensembleForm, director: e.target.value })}
+                      disabled={!ensembleForm.organizationId}
                     />
                   </div>
                   <div>
@@ -519,6 +696,7 @@ export default function Admin() {
                     <Select
                       value={ensembleForm.ageGroup}
                       onValueChange={(value) => setEnsembleForm({ ...ensembleForm, ageGroup: value })}
+                      disabled={!ensembleForm.organizationId}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Select age group" />
@@ -538,6 +716,7 @@ export default function Admin() {
                     <Select
                       value={ensembleForm.auditioned}
                       onValueChange={(value) => setEnsembleForm({ ...ensembleForm, auditioned: value })}
+                      disabled={!ensembleForm.organizationId}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Select audition status" />
@@ -553,6 +732,7 @@ export default function Admin() {
                     <Select
                       value={ensembleForm.payLevel}
                       onValueChange={(value) => setEnsembleForm({ ...ensembleForm, payLevel: value })}
+                      disabled={!ensembleForm.organizationId}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Select pay level" />
@@ -574,6 +754,7 @@ export default function Admin() {
                       value={ensembleForm.season}
                       onChange={(e) => setEnsembleForm({ ...ensembleForm, season: e.target.value })}
                       placeholder="e.g., September-June"
+                      disabled={!ensembleForm.organizationId}
                     />
                   </div>
                   <div>
@@ -583,6 +764,7 @@ export default function Admin() {
                       value={ensembleForm.rehearsalDetails}
                       onChange={(e) => setEnsembleForm({ ...ensembleForm, rehearsalDetails: e.target.value })}
                       placeholder="e.g., Sundays 2-4pm"
+                      disabled={!ensembleForm.organizationId}
                     />
                   </div>
                 </div>
@@ -593,6 +775,7 @@ export default function Admin() {
                     <Select
                       value={ensembleForm.ageRestrictions}
                       onValueChange={(value) => setEnsembleForm({ ...ensembleForm, ageRestrictions: value })}
+                      disabled={!ensembleForm.organizationId}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Select age restrictions" />
@@ -610,6 +793,7 @@ export default function Admin() {
                     <Select
                       value={ensembleForm.otherRestrictions}
                       onValueChange={(value) => setEnsembleForm({ ...ensembleForm, otherRestrictions: value })}
+                      disabled={!ensembleForm.organizationId}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Select other restrictions" />
@@ -632,6 +816,7 @@ export default function Admin() {
                       type="url"
                       value={ensembleForm.website}
                       onChange={(e) => setEnsembleForm({ ...ensembleForm, website: e.target.value })}
+                      disabled={!ensembleForm.organizationId}
                     />
                   </div>
                   <div>
@@ -640,56 +825,36 @@ export default function Admin() {
                       id="location"
                       value={ensembleForm.location}
                       onChange={(e) => setEnsembleForm({ ...ensembleForm, location: e.target.value })}
+                      disabled={!ensembleForm.organizationId}
                     />
                   </div>
                 </div>
 
-                <Button type="submit" className="w-full">
-                  Add Ensemble
-                </Button>
+                <div className="flex space-x-4">
+                  <Button 
+                    type="submit" 
+                    className="flex-1"
+                    disabled={!ensembleForm.organizationId}
+                  >
+                    {isEditMode ? "Update Ensemble" : "Add Ensemble"}
+                  </Button>
+                  {isEditMode && (
+                    <Button 
+                      type="button" 
+                      variant="outline" 
+                      onClick={resetEnsembleForm}
+                      className="flex-1"
+                    >
+                      Cancel
+                    </Button>
+                  )}
+                </div>
               </form>
             </CardContent>
           </Card>
         )}
 
-        <div className="mt-12">
-          <h2 className="text-2xl font-bold mb-4">Current Data</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Organizations ({organizations.length})</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  {organizations.map((org) => (
-                    <div key={org.id} className="p-2 bg-gray-50 dark:bg-gray-800 rounded">
-                      <div className="font-medium">{org.shortName || org.name}</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">{org.name}</div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Ensembles ({ensembles.length})</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  {ensembles.map((ensemble) => (
-                    <div key={ensemble.id} className="p-2 bg-gray-50 dark:bg-gray-800 rounded">
-                      <div className="font-medium">{ensemble.name}</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">
-                        {organizations.find(org => org.id === ensemble.organizationId)?.name}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
       </div>
 
       <Footer />

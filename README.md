@@ -23,3 +23,8 @@ A simple form allows users to add/suggest new organizations and ensembles for th
 The built-in admin forms allow the site administrator to edit and add new ensembles quickly, via a web-based UI.
 <img width="299" height="709" alt="image" src="https://github.com/user-attachments/assets/9588f20d-3a6b-4424-a5db-cb80ec1718ce" />
 <img width="666" height="804" alt="image" src="https://github.com/user-attachments/assets/26501106-9b92-40d9-afd9-abe7c64cc4f1" />
+
+**_Credits_**
+* **Vision**: Kellyn Button
+* **Design/Execution**: Zach Button
+* **Development**: Replit Agent + Cursor AI (various models)
